@@ -2,7 +2,7 @@
 
 function N1Bot() {
     var matches = document.maction.querySelectorAll("td");
-    txts = "";
+    var txts = "";
     for (var i = 0; i < matches.length; i++) {
         var selector = matches[i].querySelector("select");
         if (!selector) continue;
@@ -19,7 +19,7 @@ function N1Bot() {
   if(txts == "")
     return ;
 
-  console.log("match data: " + txts);
+  console.log("sending data to runner:" + txts);
 
   self.port.emit("matches", txts);
 
@@ -36,16 +36,16 @@ function N1Bot() {
   var selectors = document.maction.querySelectorAll("select");
   
   self.port.on("results", function(data) {
-    console.log("bot said: " + data);
 
     var myRegExp = /\: +(?:Autoload! )?(.+)/g; // the only thing this doesn't parse is "Reload (Game is already over)", which is a reload
-    //console.log(text);
     var i = 0;
-    while (match = myRegExp.exec(data)) {
+    var match = myRegExp.exec(data);
+    while (match != null) {
       if (i >= selectors.length) break;
       
       selectors[i++].value = action_map[match[1]] || "1^0";
       // console.log(match[1]);
+      match = myRegExp.exec(data);
     } 
   });
 }

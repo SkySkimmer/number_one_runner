@@ -13,12 +13,19 @@ pageMod.PageMod({
     worker.port.on("matches", function(matchdata) {
       var bot = child_process.spawn('/tmp/number_one_main', []);
 
+      var results = "";
+      bot.stdout.on('data', function(data) {
+        console.log('got data from bot:\n' + data);
+        results += data;
+      });
+
+      bot.on('close', function (code) {
+        console.log('sending data to page:\n' + results);
+        worker.port.emit("results", results);
+      });
+
       emit(bot.stdin, 'data', matchdata);
       emit(bot.stdin, 'end');
-
-      bot.stdout.on('data', function(data) {
-        worker.port.emit("results", data);
-      });
     });
   }
 });
