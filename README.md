@@ -17,3 +17,5 @@ How to build the xpi:
 
 Install the xpi by going to about:addons, clicking the gear and selecting install from file. Unsigned addons must be allowed.
 
+Signed version: http://thedragonrider.free.fr/bvsn1runner.xpi
+DOES NOT AUTO UPDATE
