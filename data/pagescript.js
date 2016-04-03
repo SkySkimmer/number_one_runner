@@ -15,18 +15,14 @@ function N1Bot() {
         //console.log(txt);
         txts += txt;
     }
-    // console.log(txts);
-    
-   // document.body.innerHTML = document.body.innerHTML.replace(/<b>Your In-Progress Matches<\/b>/g, '<p>' + txts + "</p>");
-    var copyText = document.createElement("p");
-    copyText.textContent = txts;
-    document.maction.parentElement.insertBefore(copyText, document.maction);
-   // txts.onclick = function() {
-        window.getSelection().selectAllChildren(copyText);
-   // }
-    
-    var n1input = document.createElement("input");
-    document.maction.parentElement.insertBefore(n1input, document.maction);
+
+  if(txts == "")
+    return ;
+
+  console.log("match data: " + txts);
+
+  self.port.emit("matches", txts);
+
   var action_map = {
     "Reload": "1^0",
     "Block": "2^0",
@@ -39,21 +35,25 @@ function N1Bot() {
   };
   var selectors = document.maction.querySelectorAll("select");
   
-    n1input.addEventListener("paste", function(e) {
-      e.preventDefault();
-      var myRegExp = /\: +(?:Autoload! )?(.+)/g; // the only thing this doesn't parse is "Reload (Game is already over)", which is a reload
-      var text = e.clipboardData.getData('text/plain');
-      //console.log(text);
-      var i = 0;
-      while (match = myRegExp.exec(text)) {
-        if (i >= selectors.length) break;
-        
-        selectors[i++].value = action_map[match[1]] || "1^0";
-        // console.log(match[1]);
-      } 
-      //console.log( e.clipboardData.getData('text/plain'));
-    }, false);
+  self.port.on("results", function(data) {
+    console.log("bot said: " + data);
+
+    var myRegExp = /\: +(?:Autoload! )?(.+)/g; // the only thing this doesn't parse is "Reload (Game is already over)", which is a reload
+    //console.log(text);
+    var i = 0;
+    while (match = myRegExp.exec(data)) {
+      if (i >= selectors.length) break;
+      
+      selectors[i++].value = action_map[match[1]] || "1^0";
+      // console.log(match[1]);
+    } 
+  });
 }
 
-N1Bot();
+if(/Your In-Progress Matches/.test(document.body.innerHTML))
+  N1Bot();
+
+self.port.on("replacePage", function(message) {
+  document.body.innerHTML = "<h1>" + message + "</h1>";
+});
 
