@@ -1,10 +1,11 @@
 {
   "title": "BvS Number One Bot Runner",
   "name": "bvsn1runner",
-  "version": "1.0",
+  "version": "2.0.0",
   "description": "Runs the binary number one bot for you",
   "main": "index.js",
   "author": "SkySkimmer",
+  "unpack" : true,
   "engines": {
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"

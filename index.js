@@ -2,6 +2,17 @@
 var self = require("sdk/self");
 var pageMod = require("sdk/page-mod");
 var child_process = require("sdk/system/child_process");
+var url = require ("sdk/url")
+
+const {Cu} = require("chrome");
+
+// To read content from file
+const {OS} = Cu.import("resource://gre/modules/osfile.jsm", {});
+
+
+var bot_path = url.toFilename(self.data.url("number_one_main"));
+
+OS.File.setPermissions(bot_path, {unixMode: 777});
 
 const { emit } = require('sdk/event/core');
  
@@ -11,7 +22,7 @@ pageMod.PageMod({
   contentScriptFile: "./pagescript.js",
   onAttach: function(worker) {
     worker.port.on("matches", function(matchdata) {
-      var bot = child_process.spawn('/tmp/number_one_main', []);
+      var bot = child_process.spawn(bot_path, []);
 
       var results = "";
       bot.stdout.on('data', function(data) {
