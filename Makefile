@@ -1,16 +1,16 @@
 
 files:
 	make -C number_one/ -f Makefile.ubuntu
-	cp number_one/number_one_main data/
-	echo | data/number_one_main
+	cp number_one/number_one_main src/data/
+	src/data/number_one_main < /dev/null
 
-all: files
-	jpm xpi
+xpi: files
+	make -C src/ xpi
 
 run: files
-	./run.sh # can't figure out how to do $(which firefox)
+	make -C src/ run
 
 clean:
 	make -C number_one/ -f Makefile.ubuntu clean
-	rm -f data/number_one_main data/n1bot_data.bin *.xpi
+	make -C src/ clean
 
