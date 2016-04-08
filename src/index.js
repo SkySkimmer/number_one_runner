@@ -12,7 +12,7 @@ const {OS} = Cu.import("resource://gre/modules/osfile.jsm", {});
 
 var bot_path = url.toFilename(self.data.url("number_one_main"));
 
-OS.File.setPermissions(bot_path, {unixMode: 777});
+OS.File.setPermissions(bot_path, {unixMode: 755});
 
 const { emit } = require('sdk/event/core');
  
