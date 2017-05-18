@@ -1,7 +1,7 @@
 {
   "title": "BvS Number One Bot Runner",
   "name": "bvsn1runner",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Runs the binary number one bot for you",
   "main": "index.js",
   "author": "SkySkimmer",
@@ -9,6 +9,9 @@
   "engines": {
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"
+  },
+  "permissions": {
+    "multiprocess": true
   },
   "license": "MIT",
   "keywords": [
