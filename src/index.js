@@ -17,8 +17,8 @@ OS.File.setPermissions(bot_path, {unixMode: 755});
 const { emit } = require('sdk/event/core');
  
 pageMod.PageMod({
-  include: ["http://www.animecubed.com/billy/bvs/numberone.html",
-            "http://animecubed.com/billy/bvs/numberone.html"],
+  include: ["https://www.animecubed.com/billy/bvs/numberone.html",
+            "https://animecubed.com/billy/bvs/numberone.html"],
   contentScriptFile: "./pagescript.js",
   onAttach: function(worker) {
     worker.port.on("matches", function(matchdata) {
