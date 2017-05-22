@@ -4,15 +4,15 @@ var pageMod = require("sdk/page-mod");
 var child_process = require("sdk/system/child_process");
 var url = require ("sdk/url")
 
-const {Cu} = require("chrome");
+//const {Cu} = require("chrome");
 
 // To read content from file
-const {OS} = Cu.import("resource://gre/modules/osfile.jsm", {});
+//const {OS} = Cu.import("resource://gre/modules/osfile.jsm", {});
 
 
 var bot_path = url.toFilename(self.data.url("number_one_main"));
 
-OS.File.setPermissions(bot_path, {unixMode: 755});
+//OS.File.setPermissions(bot_path, {unixMode: 755});
 
 const { emit } = require('sdk/event/core');
  
