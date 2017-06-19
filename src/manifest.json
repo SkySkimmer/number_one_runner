@@ -3,9 +3,9 @@
   "short_name": "bvsn1runner",
   "author": "SkySkimmer",
   "homepage_url": "https://github.com/SkySkimmer/number_one_runner",
-  "version": "3.0.1",
+  "version": "4.0.1",
 
-  "description": "Runs the binary number one bot for you.",
+  "description": "Plays perfectly in the Number One minigame for you.",
 
   "content_scripts": [
       {
@@ -16,7 +16,7 @@
 
 
   "background": {
-      "scripts": ["background.js"]
+      "scripts": ["lib.js", "background.js"]
   },
 
   "applications": {
@@ -24,8 +24,5 @@
       "id": "@bvsn1runner",
       "strict_min_version": "50.0"
     }
-  },
-
-  "permissions": ["nativeMessaging"]
-
+  }
 }

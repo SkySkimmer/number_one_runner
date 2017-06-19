@@ -1,15 +1,17 @@
 
+var states = {};
 
-browser.runtime.onMessage.addListener(function(matchdata, sender, respond) {
-    console.log("runner got data from page");
+fetch("states.json").then(function (resp) {
+    resp.json().then(function (data) {
+        states = data;
+    });
+});
 
-    var bot = browser.runtime.sendNativeMessage("number_one", matchdata);
+browser.runtime.onMessage.addListener(function(s, sender, respond) {
+    console.log("runner got data from page: " + JSON.stringify(s));
 
-    bot.then(function(msg) {
-        console.log('runner got data from bot:\n' + msg);
-        respond(msg);
-    },
-             function (e) { console.log("bvsn1runner: got error from binary"); });
+    var strat = get_doubletime_strat(states, s);
+    console.log("decided on strat: " + JSON.stringify(strat));
 
-    return true;
+    respond(strat);
 });
