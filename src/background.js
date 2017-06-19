@@ -1,7 +1,7 @@
 
 var states = {};
 
-fetch("states.json").then(function (resp) {
+fetch("states.json.bin").then(function (resp) {
     resp.json().then(function (data) {
         states = data;
     });

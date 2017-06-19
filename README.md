@@ -9,10 +9,12 @@ Install from https://addons.mozilla.org/en-US/firefox/addon/bvs-number-one-bot-r
 
 This is a firefox "web-extension", see mozilla's docs.
 
-You must generate a json data file containing game solutions.
+You must generate a json data file containing game solutions. Because
+the Mozilla linter is stupid this file must have a `.bin` extension.
+
 Get https://github.com/SkySkimmer/number_one and run it as
 
-    number_one_main | tr -s "[:space:]" | sed 's/ //g' > states.json
+    number_one_main | tr -s "[:space:]" | sed 's/ //g' > states.json.bin
 
 (the `tr` and `sed` aren't necessary, they just make it smaller.)
 
