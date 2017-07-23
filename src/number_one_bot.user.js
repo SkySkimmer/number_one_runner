@@ -2,7 +2,7 @@
 // @name           BvS Number One Bot
 // @namespace      SkySkimmer
 // @description    Play BvS minigame Number One
-// @version        5.0.0
+// @version        5.0.1
 // @include        http://*.animecubed.com/billy/bvs/numberone.html
 // @include        https://*.animecubed.com/billy/bvs/numberone.html
 // @require        lib.js
@@ -75,7 +75,7 @@ function parseGame(elmt) {
     state.p1.type = power_map[pow_patt.exec(txt)[1]];
     state.p2.type = power_map[pow_patt.exec(txt)[1]];
 
-    var round_patt = /Round (\d)/;
+    var round_patt = /Round (\d+)/;
     state.round = parseInt(round_patt.exec(txt)[1]);
 
     return state;
@@ -109,7 +109,7 @@ function botGame(states, elmt) {
 }
 
 function N1Bot() {
-    var states = JSON.parse(GM_getResourceText("states"));
+    var states = GM_getResourceText("states");
 
     var matches = document.forms["maction"].querySelectorAll("td");
     for (var i = 0; i < matches.length; i++) {

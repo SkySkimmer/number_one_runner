@@ -194,10 +194,29 @@ function pick_action(probabilities, bullets) {
     return bullets;
 }
 
+// from text representation of the states, get the state object for
+// the state s
+// we avoid JSON parsing because we only want 1 state among millions
+function get_state(states, s) {
+    var rep = game_state_rep(s);
+    // essentially
+    // "$rep": { .* }
+    var reg = new RegExp ('"' + rep + '"[^:]*:[^{]*({[^}]*})', "m");
+
+    //console.log("getting state " + JSON.stringify(s) + " rep " + rep);
+    var matches = states.match(reg);
+    if (matches == null || matches.length < 2)
+        return null;
+
+    var res = matches[1];
+    //console.log("results in " + res);
+    return JSON.parse(res);
+}
+
 // states: map from state ids to probabilities
 function get_doubletime_strat(states, s) {
     var strat = {};
-    var p1Move = pick_action(states[game_state_rep(s)], s.p1.bullets);
+    var p1Move = pick_action(get_state(states, s), s.p1.bullets);
     strat["p1Move"] = p1Move;
 
     for(var p2Move = -1; p2Move <= s.p2.bullets; p2Move++) {
@@ -205,7 +224,7 @@ function get_doubletime_strat(states, s) {
         if (s2.p1.bullets == 0 && s2.p2.bullets == 0)
             s2 = act(s2, -1, -1);
 
-        strat[p2Move] = pick_action(states[game_state_rep(s2)], s2.p1.bullets);
+        strat[p2Move] = pick_action(get_state(states,s2), s2.p1.bullets);
     }
     return strat;
 }
