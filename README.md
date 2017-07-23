@@ -1,20 +1,21 @@
 # BvS Number One Bot Runner
-Runs the binary number one bot for you
+Runs the binary number one bot for you (Greasemonkey version)
 
-## Installing the extension
+## Installing the userscript
 
-Install from https://addons.mozilla.org/en-US/firefox/addon/bvs-number-one-bot-runner/
+You need Greasemonkey or any similar tool which supports `@resourse`. Then just click the following link:
+https://github.com/SkySkimmer/number_one_runner/raw/greasemonkey/src/number_one_bot.user.js
 
-## Building the extension
+It will automatically download the lib.js from this repository and http://thedragonrider.free.fr/states.json (around 25MB).
 
-This is a firefox "web-extension", see mozilla's docs.
+## Building the states.json
 
-You must generate a json data file containing game solutions. Because
-the Mozilla linter is stupid this file must have a `.bin` extension.
+To build from scratch, you must generate a json data file containing
+game solutions.
 
 Get https://github.com/SkySkimmer/number_one and run it as
 
-    number_one_main | tr -s "[:space:]" | sed 's/ //g' > states.json.bin
+    number_one_main | tr -s "[:space:]" | sed 's/ //g' > states.json
 
 (the `tr` and `sed` aren't necessary, they just make it smaller.)
 
@@ -43,6 +44,8 @@ and the end like
     "1":0.188123
     }
     }
+
+Remember to modify the user.js so that the @resource URL points to your states.json.
 
 ## Development
 

@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name           BvS Number One Bot
+// @namespace      SkySkimmer
+// @description    Play BvS minigame Number One
+// @version        5.0.0
+// @include        http://*.animecubed.com/billy/bvs/numberone.html
+// @include        https://*.animecubed.com/billy/bvs/numberone.html
+// @require        lib.js
+// @resource       states http://thedragonrider.free.fr/states.json
+// @grant          GM_getResourceText
+// ==/UserScript==
+
 //based on https://greasyfork.org/en/scripts/18136-n1bot-inputs
 
 /* A game is displayed in a big <td> whose text goes
@@ -81,7 +93,7 @@ function semantic_index(i) {
     return i.toString();
 }
 
-function botGame(elmt) {
+function botGame(states, elmt) {
     var selects = elmt.querySelectorAll("select");
     if (!selects || selects.length == 0) {
         // nothing to do
@@ -89,19 +101,19 @@ function botGame(elmt) {
     }
 
     var state = parseGame(elmt);
-    var sent = browser.runtime.sendMessage(state);
-    sent.then(function (strat) {
-        for(var i=0; i < selects.length; i++) {
-            var index = semantic_index(i);
-            selects[i].value = action_map[strat[index]];
-        }
-    });
+    var strat = get_doubletime_strat(states, state);
+    for(var i=0; i < selects.length; i++) {
+        var index = semantic_index(i);
+        selects[i].value = action_map[strat[index]];
+    }
 }
 
 function N1Bot() {
+    var states = JSON.parse(GM_getResourceText("states"));
+
     var matches = document.forms["maction"].querySelectorAll("td");
     for (var i = 0; i < matches.length; i++) {
-        botGame(matches[i]);
+        botGame(states, matches[i]);
     }
 }
 
