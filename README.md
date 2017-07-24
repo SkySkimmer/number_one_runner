@@ -13,11 +13,8 @@ It will automatically download the lib.js from this repository and http://thedra
 To build from scratch, you must generate a json data file containing
 game solutions.
 
-Get https://github.com/SkySkimmer/number_one and run it as
-
-    number_one_main | tr -s "[:space:]" | sed 's/ //g' > states.json
-
-(the `tr` and `sed` aren't necessary, they just make it smaller.)
+Get https://github.com/SkySkimmer/number_one (version 0.6.0 or later)
+and compile and run it.
 
 It should say "N1 bot generator". If it only says "N1 bot" you have the wrong version.
 
@@ -58,3 +55,23 @@ pull request if you implemented your own features.
 * add win chance to the json and display it in the browser
 * implement the fallback for lost games (assume the opponent will make
   a mistake and avoid their 100% win moves)
+
+# Number One Win Chance Display
+
+## Installing the userscript
+
+You need Greasemonkey or any similar tool which supports `@resourse`. Then just click the following link:
+https://github.com/SkySkimmer/number_one_runner/raw/greasemonkey/src/number_one_winchance.user.js
+
+It will automatically download the lib.js from this repository and http://thedragonrider.free.fr/n1wins.txt (around 5MB).
+
+## Building the n1wins.txt
+
+To build from scratch, you must generate a text file containing game
+solutions.
+
+Just get https://github.com/SkySkimmer/number_one (version 0.6.0 or
+higher) and compile and run it.
+
+Remember to modify the user.js so that the `@resource` URL points to
+your own n1wins.txt.
