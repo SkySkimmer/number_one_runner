@@ -2,7 +2,7 @@
 // @name           BvS Number One Win Chances
 // @namespace      SkySkimmer
 // @description    Display chance to win Number One games
-// @version        1.0.0
+// @version        1.0.1
 // @include        http://*.animecubed.com/billy/bvs/numberone.html
 // @include        https://*.animecubed.com/billy/bvs/numberone.html
 // @require        lib.js
@@ -12,7 +12,7 @@
 
 function doGame(wins, elmt) {
     var state = parseGame(elmt);
-    var chance = 100 * get_winchance(wins, state);
+    var chance = Math.round(100 * get_winchance(wins, state));
 
     // we insert an <hr> and the winchance info before the <hr> which
     // follows the round number

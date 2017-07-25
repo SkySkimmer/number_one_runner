@@ -231,7 +231,7 @@ function get_doubletime_strat(states, s) {
 
 function get_winchance(wins, state) {
     var rep = game_state_rep(state);
-    var reg = new RegExp ("" + rep + ":(.{1,4})");
+    var reg = new RegExp ("" + rep + ":(.*)");
 
     var matches = wins.match(reg);
     if (matches == null || matches.length < 2) {
