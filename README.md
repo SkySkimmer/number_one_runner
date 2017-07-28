@@ -4,7 +4,7 @@ Runs the binary number one bot for you (Greasemonkey version)
 ## Installing the userscript
 
 You need Greasemonkey or any similar tool which supports `@resourse`. Then just click the following link:
-https://github.com/SkySkimmer/number_one_runner/raw/greasemonkey/src/number_one_bot.user.js
+https://github.com/SkySkimmer/number_one_runner/raw/master/src/number_one_bot.user.js
 
 It will automatically download the lib.js from this repository and http://thedragonrider.free.fr/states.json (around 25MB).
 
@@ -61,7 +61,7 @@ pull request if you implemented your own features.
 ## Installing the userscript
 
 You need Greasemonkey or any similar tool which supports `@resourse`. Then just click the following link:
-https://github.com/SkySkimmer/number_one_runner/raw/greasemonkey/src/number_one_winchance.user.js
+https://github.com/SkySkimmer/number_one_runner/raw/master/src/number_one_winchance.user.js
 
 It will automatically download the lib.js from this repository and http://thedragonrider.free.fr/n1wins.txt (around 5MB).
 
